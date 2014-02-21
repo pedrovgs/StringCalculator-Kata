@@ -36,20 +36,14 @@ public class StringCalculator {
      */
     public int add(final String numbers) throws NegativeNumbersNotSupportedException {
         List<Integer> numberList = extractNumberList(numbers);
-        numberList = removeIgnoredValues(numberList);
         checkIfThereAreNegativeNumbers(numberList);
         return sumNumbers(numberList);
     }
 
-    private List<Integer> removeIgnoredValues(List<Integer> numberList) {
-        List<Integer> validNumbers = new LinkedList<Integer>();
-        for (Integer number : numberList) {
-            if (number < EXCLUDED_NUMBER) {
-                validNumbers.add(number);
-            }
-        }
-        return validNumbers;
-    }
+
+    /*
+     * Auxiliary methods
+     */
 
     private void checkIfThereAreNegativeNumbers(List<Integer> numberList) throws NegativeNumbersNotSupportedException {
         List<Integer> negativeNumbers = new LinkedList<Integer>();
@@ -62,12 +56,6 @@ public class StringCalculator {
             throw new NegativeNumbersNotSupportedException(negativeNumbers);
         }
     }
-
-
-
-    /*
-     * Auxiliary methods
-     */
 
     private List<Integer> extractNumberList(String numbers) {
         List<Integer> result = new LinkedList<Integer>();
@@ -86,10 +74,17 @@ public class StringCalculator {
         LinkedList<Integer> numbers = new LinkedList<Integer>();
         while (matcher.find()) {
             int number = Integer.parseInt(matcher.group());
-            numbers.add(number);
+            if (shouldAddNumber(number)) {
+                numbers.add(number);
+            }
         }
         return numbers;
     }
+
+    private boolean shouldAddNumber(int number) {
+        return number < EXCLUDED_NUMBER;
+    }
+
 
     private int sumNumbers(List<Integer> numberList) {
         int sum = 0;
