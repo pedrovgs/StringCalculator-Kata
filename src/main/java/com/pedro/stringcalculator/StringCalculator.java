@@ -20,7 +20,8 @@ public class StringCalculator {
      * Constants
      */
 
-    private final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
+    private static final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
+    private static final Pattern numberPattern = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
 
     /*
      * Public methods
@@ -65,11 +66,14 @@ public class StringCalculator {
     }
 
     private List<Integer> getNumbersUsingRegEx(String string) {
+        Matcher matcher = numberPattern.matcher(string);
+        return extractNumbersFromMatcher(matcher);
+    }
+
+    private LinkedList<Integer> extractNumbersFromMatcher(Matcher matcher) {
         LinkedList<Integer> numbers = new LinkedList<Integer>();
-        Pattern p = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
-        Matcher m = p.matcher(string);
-        while (m.find()) {
-            int number = Integer.parseInt(m.group());
+        while (matcher.find()) {
+            int number = Integer.parseInt(matcher.group());
             numbers.add(number);
         }
         return numbers;
