@@ -62,7 +62,7 @@ public class StringCalculatorTest {
     public void shouldReturnTheSameValueIfTheArgumentContainisOnlyOneNumberWithMoreThanOneDigit() {
         int result = stringCalculator.add(ONE_NUMBER_STRING);
 
-        int expectedResult = Integer.parseInt(ONE_NUMBER_ONE_DIGIT_STRING);
+        int expectedResult = Integer.parseInt(ONE_NUMBER_STRING);
         assertEquals(expectedResult, result);
     }
 
