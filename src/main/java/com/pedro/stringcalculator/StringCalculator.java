@@ -41,26 +41,16 @@ public class StringCalculator {
      * Auxiliary methods
      */
 
-    private boolean onlyContainsOneNumber(final String numbers) {
-        return numbers.matches(ONE_DIGIT_OR_MORE_REG_EX);
-    }
-
     private List<Integer> extractNumberList(String numbers) {
         List<Integer> result = new LinkedList<Integer>();
         if (!numbers.isEmpty()) {
-            if (onlyContainsOneNumber(numbers)) {
-                int number = Integer.parseInt(numbers);
-                result.add(number);
-            } else {
-                result = getNumbersUsingRegEx(numbers);
-            }
+            result = getNumbersUsingRegEx(numbers);
         }
         return result;
     }
 
     private List<Integer> getNumbersUsingRegEx(String string) {
         LinkedList<Integer> numbers = new LinkedList<Integer>();
-
         Pattern p = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
         Matcher m = p.matcher(string);
         while (m.find()) {
