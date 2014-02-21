@@ -1,5 +1,7 @@
 package com.pedro.stringcalculator;
 
+import com.pedro.stringcalculator.exception.NegativeNumbersNotSupportedException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,7 +20,7 @@ public class StringCalculator {
      * Constants
      */
 
-    private final String ONE_DIGIT_OR_MORE_REG_EX = "\\d+";
+    private final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
 
     /*
      * Public methods
@@ -30,9 +32,22 @@ public class StringCalculator {
      * @param numbers to analyze and sum.
      * @return the sum value with some restrictions described in the project documentation.
      */
-    public int add(final String numbers) {
+    public int add(final String numbers) throws NegativeNumbersNotSupportedException {
         List<Integer> numberList = extractNumberList(numbers);
+        checkIfThereAreNegativeNumbers(numberList);
         return sumNumbers(numberList);
+    }
+
+    private void checkIfThereAreNegativeNumbers(List<Integer> numberList) throws NegativeNumbersNotSupportedException {
+        List<Integer> negativeNumbers = new LinkedList<Integer>();
+        for (Integer num : numberList) {
+            if (num < 0) {
+                negativeNumbers.add(num);
+            }
+        }
+        if (negativeNumbers.size() > 0) {
+            throw new NegativeNumbersNotSupportedException(negativeNumbers);
+        }
     }
 
 
