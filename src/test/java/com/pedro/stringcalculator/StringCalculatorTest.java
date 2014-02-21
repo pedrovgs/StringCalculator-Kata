@@ -23,6 +23,7 @@ public class StringCalculatorTest {
     private static final String EMPTY_SET_OF_NUMBERS = "";
     private static final String ONE_NUMBER_ONE_DIGIT_STRING = "1";
     private static final String ONE_NUMBER_STRING = "11";
+    private static final String FOUR_NUMBERS_STRING_SUM_ELEVEN = "1,2,3,5";
 
     /*
      * Test data
@@ -64,6 +65,13 @@ public class StringCalculatorTest {
 
         int expectedResult = Integer.parseInt(ONE_NUMBER_STRING);
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void shoulReturnTheSumOfAnUnknownAmountOfNumbers() {
+        int result = stringCalculator.add(FOUR_NUMBERS_STRING_SUM_ELEVEN);
+
+        assertEquals(11, result);
     }
 
 }
