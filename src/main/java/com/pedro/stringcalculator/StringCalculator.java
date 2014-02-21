@@ -22,6 +22,7 @@ public class StringCalculator {
 
     private static final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
     private static final Pattern numberPattern = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
+    private static final Integer EXCLUDED_NUMBER = 1000;
 
     /*
      * Public methods
@@ -35,8 +36,19 @@ public class StringCalculator {
      */
     public int add(final String numbers) throws NegativeNumbersNotSupportedException {
         List<Integer> numberList = extractNumberList(numbers);
+        numberList = removeIgnoredValues(numberList);
         checkIfThereAreNegativeNumbers(numberList);
         return sumNumbers(numberList);
+    }
+
+    private List<Integer> removeIgnoredValues(List<Integer> numberList) {
+        List<Integer> validNumbers = new LinkedList<Integer>();
+        for (Integer number : numberList) {
+            if (number < EXCLUDED_NUMBER) {
+                validNumbers.add(number);
+            }
+        }
+        return validNumbers;
     }
 
     private void checkIfThereAreNegativeNumbers(List<Integer> numberList) throws NegativeNumbersNotSupportedException {
