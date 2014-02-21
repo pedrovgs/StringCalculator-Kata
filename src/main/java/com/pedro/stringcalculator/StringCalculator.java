@@ -11,6 +11,18 @@ import java.util.regex.Pattern;
  * Main class of this application. StringCalculator is an application created to analyze one string, extract the
  * numeric values and return an integer that represents the sum of the numeric values. Some interesting conditions
  * are described in the application documentation.
+ * <p/>
+ * This are the use cases implemented in this application:
+ * <p/>
+ * If the application doesn't receive any number should return zero.
+ * If the application receive only one number should return the same number. Same behaviour expected with numbers of different digits.
+ * If the application receive some numbers separated with one character will return the sum of all of them.
+ * The application supports new line character separators.
+ * The application supports more than one separator separator.
+ * The application supports more than one separator at the same time.
+ * <p/>
+ * If the application receipts one or some negative numbers will it will throw a NegativeNumbersNotSupportedException.
+ * If the application receipts on number grater than 1000 this number will have to be discarded in the sum.
  *
  * @author Pedro Vicente Gómez Sánchez.
  */

@@ -58,7 +58,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void shouldReturnTheSameValueifTheArgumentContainsOnlyOneNumberWithOneDigit() throws NegativeNumbersNotSupportedException {
+    public void shouldReturnTheSameValueIfTheArgumentContainsOnlyOneNumberWithOneDigit() throws NegativeNumbersNotSupportedException {
         int result = stringCalculator.add(ONE_NUMBER_ONE_DIGIT_STRING);
 
         int expectedResult = Integer.parseInt(ONE_NUMBER_ONE_DIGIT_STRING);
