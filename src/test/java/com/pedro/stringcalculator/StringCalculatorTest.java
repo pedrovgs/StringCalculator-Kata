@@ -28,6 +28,7 @@ public class StringCalculatorTest {
     private static final String NUMBERS_STRING_SUM_SIX_SEPARATOR_NEW_LINE = "1\n2,3";
     private static final String NUMBERS_STRING_SUM_SEVEN_DIFFERENT_SEPARATORS = "//;\n1;2p4";
     private static final String NUMBERS_STRING_WITH_NEGATIVE_VALUES = "//;\n1;2p-4";
+    private static final String NUMBERS_STRING_SUM_TWO_WITH_MORE_THAN_THOUSAND = "2,1000";
 
     /*
      * Test data
@@ -95,6 +96,13 @@ public class StringCalculatorTest {
     @Test(expected = NegativeNumbersNotSupportedException.class)
     public void shouldThrowNegativeNumbersNotSupportedException() throws NegativeNumbersNotSupportedException {
         stringCalculator.add(NUMBERS_STRING_WITH_NEGATIVE_VALUES);
+    }
+
+    @Test
+    public void shouldIgnoreNumbersGratherThanOneThousand() throws NegativeNumbersNotSupportedException {
+        int result = stringCalculator.add(NUMBERS_STRING_SUM_TWO_WITH_MORE_THAN_THOUSAND);
+
+        assertEquals(2, result);
     }
 
 }
