@@ -16,6 +16,10 @@ public class StringCalculator {
      * @return the sum value with some restrictions described in the project documentation.
      */
     public int add(String numbers) {
-        return -1;
+        int result = 0;
+        if (!numbers.isEmpty()) {
+
+        }
+        return result;
     }
 }
