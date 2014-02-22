@@ -1,7 +1,8 @@
 package com.pedro.stringcalculator;
 
-import com.pedro.stringcalculator.exception.NegativeNumbersNotSupportedException;
+import com.pedro.stringcalculator.exception.ValidatorException;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,17 +29,28 @@ public class StringCalculator {
 
 
     /*
+     * Constants
+     */
+
+    private static final int VALIDATION_TOP_NUMBER = 1000;
+
+    /*
      * Attributes
      */
     private NumberExtractor numberExtractor;
+    private ListNumberValidator negativeNumberValidator;
+    private NumberValidator numberValidator;
 
     /*
      * Constructor
      */
 
     public StringCalculator() {
-        this.numberExtractor = new NumberExtractor();
+        initializeNumberExtractor();
+        initializeNegativeNumberValidator();
+        initializeNumbersValidator();
     }
+
 
     /*
      * Public methods
@@ -50,10 +62,11 @@ public class StringCalculator {
      * @param numbers to analyze and sum.
      * @return the sum value with some restrictions described in the project documentation.
      */
-    public int add(final String numbers) throws NegativeNumbersNotSupportedException {
-        List<Integer> numberList = numberExtractor.extract(numbers);
-        checkIfThereAreNegativeNumbers(numberList);
-        return sumNumbers(numberList);
+    public int add(final String numbers) throws ValidatorException {
+        List<Integer> numbersList = extractNumbers(numbers);
+        checkIfThereAreNegativeNumbers(numbersList);
+        numbersList = validateNumbers(numbersList);
+        return sumNumbers(numbersList);
     }
 
 
@@ -61,16 +74,32 @@ public class StringCalculator {
      * Auxiliary methods
      */
 
-    private void checkIfThereAreNegativeNumbers(List<Integer> numberList) throws NegativeNumbersNotSupportedException {
-        List<Integer> negativeNumbers = new LinkedList<Integer>();
-        for (Integer num : numberList) {
-            if (num < 0) {
-                negativeNumbers.add(num);
-            }
-        }
-        if (negativeNumbers.size() > 0) {
-            throw new NegativeNumbersNotSupportedException(negativeNumbers);
-        }
+    private void initializeNumbersValidator() {
+        NumberValidator.ValidationRule rule = new LessThanValidationRule(VALIDATION_TOP_NUMBER);
+        Collection<NumberValidator.ValidationRule> rules = new LinkedList<NumberValidator.ValidationRule>();
+        rules.add(rule);
+        this.numberValidator = new NumberValidator(rules);
+    }
+
+    private void initializeNegativeNumberValidator() {
+        this.negativeNumberValidator = new NegativeNumberValidator();
+    }
+
+    private void initializeNumberExtractor() {
+        this.numberExtractor = new NumberExtractor();
+    }
+
+
+    private List<Integer> extractNumbers(final String numbers) {
+        return numberExtractor.extract(numbers);
+    }
+
+    private void checkIfThereAreNegativeNumbers(final List<Integer> numbersList) throws ValidatorException {
+        negativeNumberValidator.validate(numbersList);
+    }
+
+    private List<Integer> validateNumbers(final List<Integer> numbersList) {
+        return numberValidator.removeNotValidNumbers(numbersList);
     }
 
     private int sumNumbers(List<Integer> numberList) {
