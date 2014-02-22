@@ -22,7 +22,7 @@ class LessThanValidationRule implements NumberValidator.ValidationRule {
 
     @Override
     public boolean isValid(Integer number) {
-        return false;
+        return number < value;
     }
 
 }
