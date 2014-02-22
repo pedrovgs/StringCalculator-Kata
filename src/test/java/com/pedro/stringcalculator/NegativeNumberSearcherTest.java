@@ -9,11 +9,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Tess created to check the correctness of NegativeNumberValidator.
+ * Tess created to check the correctness of NegativeNumberSearcher.
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
-public class NegativeNumberValidatorTest {
+public class NegativeNumberSearcherTest {
 
     /*
      * Constants
@@ -26,7 +26,7 @@ public class NegativeNumberValidatorTest {
      * Test data
      */
 
-    private NegativeNumberValidator validator;
+    private NegativeNumberSearcher validator;
 
     /*
      * Before and after methods
@@ -65,7 +65,7 @@ public class NegativeNumberValidatorTest {
      */
 
     private void initializeRule() {
-        validator = new NegativeNumberValidator();
+        validator = new NegativeNumberSearcher();
     }
 
     private List<Integer> generateIntegerList(int num) {

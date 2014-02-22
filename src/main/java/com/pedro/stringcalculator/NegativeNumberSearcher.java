@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
-class NegativeNumberValidator implements ListNumberValidator {
+class NegativeNumberSearcher implements ForbiddenNumberSearcher {
 
     /*
      * Validator methods

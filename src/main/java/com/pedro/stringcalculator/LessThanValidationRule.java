@@ -1,7 +1,7 @@
 package com.pedro.stringcalculator;
 
 /**
- * ValidationRule created to discard all the numbers grater than or equals to the value passed in the constructor
+ * ValidationRule created to discard all the numbers grater than or equals to the value passed in the constructor.
  *
  * @author Pedro Vicente Gómez Sánchez.
  */

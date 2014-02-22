@@ -38,7 +38,7 @@ public class StringCalculator {
      * Attributes
      */
     private NumberExtractor numberExtractor;
-    private ListNumberValidator negativeNumberValidator;
+    private ForbiddenNumberSearcher negativeNumberSearcher;
     private NumberValidator numberValidator;
 
     /*
@@ -82,7 +82,7 @@ public class StringCalculator {
     }
 
     private void initializeNegativeNumberValidator() {
-        this.negativeNumberValidator = new NegativeNumberValidator();
+        this.negativeNumberSearcher = new NegativeNumberSearcher();
     }
 
     private void initializeNumberExtractor() {
@@ -95,7 +95,7 @@ public class StringCalculator {
     }
 
     private void checkIfThereAreNegativeNumbers(final List<Integer> numbersList) throws ValidatorException {
-        negativeNumberValidator.validate(numbersList);
+        negativeNumberSearcher.validate(numbersList);
     }
 
     private List<Integer> validateNumbers(final List<Integer> numbersList) {

@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
-interface ListNumberValidator {
+interface ForbiddenNumberSearcher {
 
     public void validate(List<Integer> numbers) throws ValidatorException;
 }
