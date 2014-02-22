@@ -11,7 +11,11 @@ import java.util.List;
  */
 class NumberExtractor {
 
-    public List<Integer> extract(final String noNumbers) {
-        return null;
+    public List<Integer> extract(final String stringToAnalyze) {
+        List<Integer> numbers = new LinkedList<Integer>();
+        if (stringToAnalyze != null && !stringToAnalyze.isEmpty()) {
+
+        }
+        return numbers;
     }
 }
