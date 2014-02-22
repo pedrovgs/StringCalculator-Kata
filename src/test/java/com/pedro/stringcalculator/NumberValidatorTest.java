@@ -14,7 +14,9 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.when;
 
 /**
- * @author pedro.
+ * Test created to check the correctness of NumberValidator
+ *
+ * @author Pedro Vicente Gómez Sánchez.
  */
 public class NumberValidatorTest {
 
@@ -25,13 +27,27 @@ public class NumberValidatorTest {
     private NumberValidator numberValidator;
 
     /*
-     * Mocks
+     * Mocks and fakes
      */
 
     @Mock
     private NumberValidator.ValidationRule mockedValidationRule1;
     @Mock
     private NumberValidator.ValidationRule mockedValidationRule2;
+
+    private NumberValidator.ValidationRule fakeValidationRuleDiscardTwo = new NumberValidator.ValidationRule() {
+        @Override
+        public boolean isValid(Integer number) {
+            return !number.equals(2);
+        }
+    };
+
+    private NumberValidator.ValidationRule fakeValidationRuleDiscardFour = new NumberValidator.ValidationRule() {
+        @Override
+        public boolean isValid(Integer number) {
+            return !number.equals(4);
+        }
+    };
 
     /*
      * Before and after methods
@@ -61,18 +77,14 @@ public class NumberValidatorTest {
 
     @Test
     public void shouldRemoveTwoAndFour() {
-        when(mockedValidationRule1.isValid(1)).thenReturn(true);
-        when(mockedValidationRule2.isValid(3)).thenReturn(true);
-        when(mockedValidationRule1.isValid(2)).thenReturn(false);
-        when(mockedValidationRule2.isValid(4)).thenReturn(false);
-
+        initializeNumberValidatorWithFakes();
 
         List<Integer> numbers = generateNumbersList(1, 2, 3, 4);
 
         List<Integer> result = numberValidator.removeNotValidNumbers(numbers);
 
-        numbers.remove(2);
-        numbers.remove(4);
+        numbers.remove(new Integer(2));
+        numbers.remove(new Integer(4));
 
         assertEquals(numbers, result);
     }
@@ -90,6 +102,14 @@ public class NumberValidatorTest {
         Collection<NumberValidator.ValidationRule> rules = generateValidationRuleCollection();
         numberValidator = new NumberValidator(rules);
     }
+
+    private void initializeNumberValidatorWithFakes() {
+        Collection<NumberValidator.ValidationRule> rules = new LinkedList<NumberValidator.ValidationRule>();
+        rules.add(fakeValidationRuleDiscardTwo);
+        rules.add(fakeValidationRuleDiscardFour);
+        numberValidator = new NumberValidator(rules);
+    }
+
 
     private Collection<NumberValidator.ValidationRule> generateValidationRuleCollection() {
         Collection<NumberValidator.ValidationRule> rules = new LinkedList<NumberValidator.ValidationRule>();

@@ -1,8 +1,8 @@
 package com.pedro.stringcalculator;
 
-import java.util.List;
-
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Class created to evaluate witch are valid numbers inside a List<Integer>. This implementation it's based on a
@@ -38,7 +38,29 @@ class NumberValidator {
      * @return a List<Integer> without the invalid numbers
      */
     public List<Integer> removeNotValidNumbers(List<Integer> numbers) {
-        return null;
+        List<Integer> result = new LinkedList<Integer>();
+        for (Integer num : numbers) {
+            if (isValid(num)) {
+                result.add(num);
+            }
+        }
+        return result;
+    }
+
+
+    /*
+     * Auxiliary methods
+     */
+
+    private boolean isValid(Integer num) {
+        boolean res = true;
+        for (ValidationRule rule : rules) {
+            if (!rule.isValid(num)) {
+                res = false;
+                break;
+            }
+        }
+        return res;
     }
 
     /*
