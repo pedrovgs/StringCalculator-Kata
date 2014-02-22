@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Pedro Vicente Gómez Sánchez.
  */
-public class NegativeNumbersNotSupportedException extends Exception {
+public class NegativeNumbersNotSupportedException extends ValidatorException {
 
     /*
      * Constants
