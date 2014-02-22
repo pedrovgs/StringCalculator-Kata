@@ -4,8 +4,6 @@ import com.pedro.stringcalculator.exception.NegativeNumbersNotSupportedException
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Main class of this application. StringCalculator is an application created to analyze one string, extract the
@@ -28,13 +26,19 @@ import java.util.regex.Pattern;
  */
 public class StringCalculator {
 
+
     /*
-     * Constants
+     * Attributes
+     */
+    private NumberExtractor numberExtractor;
+
+    /*
+     * Constructor
      */
 
-    private static final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
-    private static final Pattern numberPattern = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
-    private static final Integer EXCLUDED_NUMBER = 1000;
+    public StringCalculator() {
+        this.numberExtractor = new NumberExtractor();
+    }
 
     /*
      * Public methods
@@ -47,7 +51,7 @@ public class StringCalculator {
      * @return the sum value with some restrictions described in the project documentation.
      */
     public int add(final String numbers) throws NegativeNumbersNotSupportedException {
-        List<Integer> numberList = extractNumberList(numbers);
+        List<Integer> numberList = numberExtractor.extract(numbers);
         checkIfThereAreNegativeNumbers(numberList);
         return sumNumbers(numberList);
     }
@@ -68,35 +72,6 @@ public class StringCalculator {
             throw new NegativeNumbersNotSupportedException(negativeNumbers);
         }
     }
-
-    private List<Integer> extractNumberList(String numbers) {
-        List<Integer> result = new LinkedList<Integer>();
-        if (!numbers.isEmpty()) {
-            result = getNumbersUsingRegEx(numbers);
-        }
-        return result;
-    }
-
-    private List<Integer> getNumbersUsingRegEx(String string) {
-        Matcher matcher = numberPattern.matcher(string);
-        return extractNumbersFromMatcher(matcher);
-    }
-
-    private LinkedList<Integer> extractNumbersFromMatcher(Matcher matcher) {
-        LinkedList<Integer> numbers = new LinkedList<Integer>();
-        while (matcher.find()) {
-            int number = Integer.parseInt(matcher.group());
-            if (shouldAddNumber(number)) {
-                numbers.add(number);
-            }
-        }
-        return numbers;
-    }
-
-    private boolean shouldAddNumber(int number) {
-        return number < EXCLUDED_NUMBER;
-    }
-
 
     private int sumNumbers(List<Integer> numberList) {
         int sum = 0;
