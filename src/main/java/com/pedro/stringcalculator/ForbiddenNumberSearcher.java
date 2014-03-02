@@ -27,5 +27,5 @@ import java.util.List;
  */
 interface ForbiddenNumberSearcher {
 
-    public void validate(List<Integer> numbers) throws ValidatorException;
+    void validate(List<Integer> numbers) throws ValidatorException;
 }

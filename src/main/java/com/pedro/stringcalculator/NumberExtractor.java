@@ -33,7 +33,7 @@ class NumberExtractor {
      */
 
     private static final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
-    private static final Pattern numberPattern = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
+    private static final Pattern NUMBER_PATTERN = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
 
     /*
      * Public methods
@@ -58,11 +58,11 @@ class NumberExtractor {
      */
 
     private List<Integer> getNumbersUsingRegEx(String string) {
-        Matcher matcher = numberPattern.matcher(string);
+        Matcher matcher = NUMBER_PATTERN.matcher(string);
         return extractNumbersFromMatcher(matcher);
     }
 
-    private LinkedList<Integer> extractNumbersFromMatcher(Matcher matcher) {
+    private List<Integer> extractNumbersFromMatcher(Matcher matcher) {
         LinkedList<Integer> numbers = new LinkedList<Integer>();
         while (matcher.find()) {
             int number = Integer.parseInt(matcher.group());
