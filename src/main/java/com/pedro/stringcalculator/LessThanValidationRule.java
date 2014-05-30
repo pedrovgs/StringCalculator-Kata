@@ -22,14 +22,7 @@ package com.pedro.stringcalculator;
  */
 class LessThanValidationRule implements NumberValidator.ValidationRule {
 
-    /*
-     * Attributes
-     */
     private final int value;
-
-    /*
-     * Constructor
-     */
 
     LessThanValidationRule(int value) {
         this.value = value;

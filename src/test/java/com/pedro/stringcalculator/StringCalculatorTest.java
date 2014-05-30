@@ -33,10 +33,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class StringCalculatorTest {
 
-    /*
-     * Constants
-     */
-
     private static final String EMPTY_SET_OF_NUMBERS = "";
     private static final String ONE_NUMBER_ONE_DIGIT_STRING = "1";
     private static final String ONE_NUMBER_STRING = "11";
@@ -47,24 +43,12 @@ public class StringCalculatorTest {
     private static final String NUMBERS_STRING_SUM_TWO_WITH_MORE_THAN_THOUSAND = "2,1000";
     private static final String NUMBERS_STRING_SUM_SEVEN_DIFFERENT_SEPARATORS_CONSECUTIVES = "[*][%]\\n1*2%4";
 
-    /*
-     * Test data
-     */
-
     private StringCalculator stringCalculator;
-
-    /*
-     * Before and after methods
-     */
 
     @Before
     public void setUp() {
         stringCalculator = new StringCalculator();
     }
-
-    /*
-     * Test methods
-     */
 
     @Test
     public void shouldReturnZeroIfTheArgumentIsEmpty() throws ValidatorException {

@@ -30,31 +30,16 @@ import java.util.List;
  */
 public class NegativeNumberSearcherTest {
 
-    /*
-     * Constants
-     */
     private static final int POSITIVE_VALUE = 100;
     private static final int ZERO = 0;
     private static final int NEGATIVE_VALUE = -11;
 
-    /*
-     * Test data
-     */
-
     private NegativeNumberSearcher validator;
-
-    /*
-     * Before and after methods
-     */
 
     @Before
     public void setUp() {
         initializeRule();
     }
-
-    /*
-     * Test methods
-     */
 
     @Test
     public void shouldValidatePositiveNumbers() throws ValidatorException {
@@ -74,10 +59,6 @@ public class NegativeNumberSearcherTest {
         List<Integer> positiveNumbers = generateIntegerList(NEGATIVE_VALUE);
         validator.validate(positiveNumbers);
     }
-
-    /*
-     * Auxiliary methods
-     */
 
     private void initializeRule() {
         validator = new NegativeNumberSearcher();

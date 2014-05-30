@@ -28,16 +28,8 @@ import java.util.regex.Pattern;
  */
 class NumberExtractor {
 
-    /*
-     * Constants
-     */
-
     private static final String ONE_DIGIT_OR_MORE_REG_EX = "-?\\d+";
     private static final Pattern NUMBER_PATTERN = Pattern.compile(ONE_DIGIT_OR_MORE_REG_EX);
-
-    /*
-     * Public methods
-     */
 
     /**
      * Analyze the string passed as parameter searching numbers and return a list with all of them
@@ -53,10 +45,6 @@ class NumberExtractor {
         return result;
     }
 
-    /*
-     * Auxiliary methods
-     */
-
     private List<Integer> getNumbersUsingRegEx(String string) {
         Matcher matcher = NUMBER_PATTERN.matcher(string);
         return extractNumbersFromMatcher(matcher);
@@ -70,6 +58,5 @@ class NumberExtractor {
         }
         return numbers;
     }
-
 
 }

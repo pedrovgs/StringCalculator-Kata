@@ -35,15 +35,7 @@ import static org.mockito.Mockito.when;
  */
 public class NumberValidatorTest {
 
-    /*
-     * Test data
-     */
-
     private NumberValidator numberValidator;
-
-    /*
-     * Mocks and fakes
-     */
 
     @Mock
     private NumberValidator.ValidationRule mockedValidationRule1;
@@ -64,19 +56,11 @@ public class NumberValidatorTest {
         }
     };
 
-    /*
-     * Before and after methods
-     */
-
     @Before
     public void setUp() throws Exception {
         initializeMocks();
         initializeNumberValidator();
     }
-
-    /*
-     * Test methods
-     */
 
     @Test
     public void shouldNotRemoveAnyNumber() {
@@ -103,11 +87,6 @@ public class NumberValidatorTest {
 
         assertEquals(numbers, result);
     }
-
-
-    /*
-     * Auxiliary methods
-     */
 
     private void initializeMocks() {
         MockitoAnnotations.initMocks(this);

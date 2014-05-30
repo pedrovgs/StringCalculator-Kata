@@ -42,34 +42,17 @@ import java.util.List;
  */
 public class StringCalculator {
 
-
-    /*
-     * Constants
-     */
-
     private static final int VALIDATION_TOP_NUMBER = 1000;
 
-    /*
-     * Attributes
-     */
     private NumberExtractor numberExtractor;
     private ForbiddenNumberSearcher negativeNumberSearcher;
     private NumberValidator numberValidator;
-
-    /*
-     * Constructor
-     */
 
     public StringCalculator() {
         initializeNumberExtractor();
         initializeNegativeNumberValidator();
         initializeNumbersValidator();
     }
-
-
-    /*
-     * Public methods
-     */
 
     /**
      * Parse an string and sum all the numeric values removing the non numeric characters.
@@ -83,11 +66,6 @@ public class StringCalculator {
         numbersList = validateNumbers(numbersList);
         return sumNumbers(numbersList);
     }
-
-
-    /*
-     * Auxiliary methods
-     */
 
     private void initializeNumbersValidator() {
         NumberValidator.ValidationRule rule = new LessThanValidationRule(VALIDATION_TOP_NUMBER);

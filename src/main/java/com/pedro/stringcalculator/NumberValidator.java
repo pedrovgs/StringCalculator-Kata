@@ -27,23 +27,11 @@ import java.util.List;
  */
 class NumberValidator {
 
-    /*
-     * Attributes
-     */
-
     private Collection<ValidationRule> rules;
-
-    /*
-     * Constructor
-     */
 
     NumberValidator(Collection<ValidationRule> rules) {
         this.rules = rules;
     }
-
-    /*
-     * Public methods
-     */
 
     /**
      * For each element inside the numbers parameter this method will evaluate if it's valid to add it or not to the
@@ -62,11 +50,6 @@ class NumberValidator {
         return result;
     }
 
-
-    /*
-     * Auxiliary methods
-     */
-
     private boolean isValid(Integer num) {
         boolean res = true;
         for (ValidationRule rule : rules) {
@@ -77,10 +60,6 @@ class NumberValidator {
         }
         return res;
     }
-
-    /*
-     Inner collaborators
-     */
 
     /**
      * Little interface created to represent a validation rule.

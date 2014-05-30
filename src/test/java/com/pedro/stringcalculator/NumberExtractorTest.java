@@ -30,33 +30,15 @@ import static org.junit.Assert.assertEquals;
  */
 public class NumberExtractorTest {
 
-    /*
-     * Constants
-     */
-
     private static final String NO_NUMBERS = "asdf";
     private static final String NUMBERS_WITH_DIFFERENT_DELIMITERS = "\n|·1,2,3,pouusdf4%5&6";
 
-
-    /*
-     * Test data
-     */
-
     private NumberExtractor numberExtractor;
-
-    /*
-     * After and before methods
-     */
 
     @Before
     public void setUp() {
         initializeNumberExtractor();
     }
-
-
-    /*
-     * Test methods
-     */
 
     @Test
     public void shouldReturnAnEmptyCollectionIfTheParamIsNull() {
@@ -85,10 +67,6 @@ public class NumberExtractorTest {
         List<Integer> expectedResult = generateListOfNumbers(1, 2, 3, 4, 5, 6);
         assertEquals(expectedResult, result);
     }
-
-    /*
-     * Auxiliary method
-     */
 
     private void initializeNumberExtractor() {
         numberExtractor = new NumberExtractor();

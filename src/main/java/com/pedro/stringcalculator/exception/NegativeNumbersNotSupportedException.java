@@ -26,37 +26,17 @@ import java.util.List;
  */
 public class NegativeNumbersNotSupportedException extends ValidatorException {
 
-    /*
-     * Constants
-     */
-
     private static final String EXCEPTION_NAME = "NegativeNumbersNotSupportedException";
 
-    /*
-     * Attributes
-     */
-
     private List<Integer> negativeNumbers;
-
-    /*
-     * Constructor
-     */
 
     public NegativeNumbersNotSupportedException(List<Integer> negativeNumbers) {
         this.negativeNumbers = negativeNumbers;
     }
 
-    /*
-     * Public methods
-     */
-
     public static String getExceptionName() {
         return EXCEPTION_NAME;
     }
-
-    /*
-     * Override methods
-     */
 
     @Override
     public String getMessage() {

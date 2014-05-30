@@ -30,10 +30,6 @@ import java.util.List;
  */
 class NegativeNumberSearcher implements ForbiddenNumberSearcher {
 
-    /*
-     * Validator methods
-     */
-
     @Override
     public void validate(final List<Integer> numbers) throws ValidatorException {
         List<Integer> negativeNumbers = getNegativeNumbers(numbers);
@@ -51,9 +47,5 @@ class NegativeNumberSearcher implements ForbiddenNumberSearcher {
         }
         return negativeNumbers;
     }
-
-    /*
-     * Auxiliary methods
-     */
 
 }
